@@ -9,12 +9,17 @@
 <body>
 <h1 style="text-align: center;">NIRVXSH</h1><hr>
     <center>
-        เข้าสู่ระบบด้วย<br>
         <?php 
             $login=$_POST['login'];
             $passwordlogin=$_POST['passwordlogin'];
-            echo "Login = $login <BR>";
-            echo "Password = $passwordlogin <BR>";
+    
+            if($login=="admin"&&$passwordlogin=="ad1234")
+                echo"ยินดีต้อนรับคุณ ADMIN<BR>";
+            elseif($login=="member"&&$passwordlogin=="mem1234")
+                echo"ยินดีต้อนรับคุณ MEMBER<BR>";
+            else
+                echo"ชื่อบัญชีหรือรหัสผ่านไม่ถูกต้อง <BR>";
+            echo "<a href='index.php'>กลับสู่หน้าหลัก</a>";
         ?>
     </center>
 </body>

@@ -17,13 +17,13 @@
         <a href="login.html" target="_blank" style="float:right">เข้าสู่ระบบ</a>
         <br>
         <form action="post.php" method="get">
-            <ul>
-                <li><a href="post.php?id=1">กระทู้ที่ 1</a></li>
-                <li><a href="post.php?id=2">กระทู้ที่ 2</a></li>
-                <li><a href="post.php?id=3">กระทู้ที่ 3</a></li>
-                <li><a href="post.php?id=4">กระทู้ที่ 4</a></li>
-                <li><a href="post.php?id=5">กระทู้ที่ 5</a></li>
-            </ul>
+        <?php 
+            $i=1; 
+            while($i<=10){
+                echo "<li> <a href='post.php?id=$i'>กระทู้ที่$i</a></li>";
+                $i++;
+            }
+        ?>
         </form>
     
 
