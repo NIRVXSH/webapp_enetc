@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+    <?php
+    session_start();
+        if(isset($_SESSION['id'])){
+            header("location:index.php");
+            die();
+        }
+    ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +23,7 @@
             <tr><td>password </td><td> <input type="password" name="passwordlogin" size="50"> </td></tr>
             <tr><td colspan="2" align="center"><input type="submit" value="login"></td></tr>   
         </table></form>
-        ถ้ายังไม่ได้เป็นสมาชิก <a href="register.html" target="_blank">กรุณาสมัครสมาชิก</a>
+        ถ้ายังไม่ได้เป็นสมาชิก <a href="register.php" target="_blank">กรุณาสมัครสมาชิก</a>
     </center>
 </body>
 </html>

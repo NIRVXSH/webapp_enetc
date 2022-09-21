@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    session_start();
+        if(isset($_SESSION['id'])){
+            header("location:index.php");
+            die();
+        }
+        else{
+    ?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,4 +29,7 @@
     </table>
     <center><p><a href='index.php'>กลับไปหน้าหลัก</a></p></center>
 </body>
+<?php
+        }
+?>
 </html>
