@@ -26,6 +26,20 @@
     <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+            <?php
+                if(isset($_SESSION['add_login'])){
+                    if($_SESSION['add_login']=='error'){
+                        echo "<div class='alert alert-danger'>ชื่อบัญชีซ้ำหรือฐานข้อมูลมีปัญหา</div>";
+                    }elseif($_SESSION['add_login']=='success'){
+                        echo"<div class='alert alert-success'>เพิ่มบัญชีเรียบร้อยแล้ว</div>";
+                    }
+                   
+                }
+                elseif(!isset($_SESSION['add_login'])){
+                    echo "";
+                }
+                 unset($_SESSION['add_login']);
+            ?>
                 <div class="card text-dark bg-white border-primary">
                     <div class="card-header bg-primary text-white">กรอกข้อมูล</div>
                     <div class="card-body">
@@ -39,28 +53,28 @@
                             <div class="row mb-2">
                                 <label class="col-md-3 col-form-label">รหัสผ่าน</label>
                                 <div class="col-md-9">
-                                    <input type="password" name="pwd" class="form-control" required>
+                                    <input type="password" name="pwd" class="form-control" required id="password">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label">ชื่อ-นามสกุล</label>
                                 <div class="col-md-9">
-                                    <input type="text" name="name" class="form-control" required>
+                                    <input type="text" name="name" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label">เพศ</label>
                                 <div class="col-md-9">
                                     <div class="form-check">
-                                        <input type="radio" name="gender" value="m" class="form-check-input" required>
+                                        <input type="radio" name="gender" value="m" class="form-check-input" >
                                         <label class="form-check-label">ชาย</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" name="gender" value="f" class="form-check-input" required>
+                                        <input type="radio" name="gender" value="f" class="form-check-input" >
                                         <label class="form-check-label">หญิง</label>
                                     </div>
                                     <div class="form-check">
-                                        <input type="radio" name="gender" value="o" class="form-check-input" required>
+                                        <input type="radio" name="gender" value="o" class="form-check-input" >
                                         <label class="form-check-label">อื่นๆ</label>
                                     </div>
                                 </div>
@@ -68,7 +82,7 @@
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label">อีเมลล์</label>
                                 <div class="col-md-9">
-                                    <input type="text" name="email" class="form-control" required>
+                                    <input type="email" class="form-control"  name="email" required>
                                 </div>
                             </div>
                             <div class="row mb-3">

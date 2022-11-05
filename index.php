@@ -13,6 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>NIRVXSH main page</title>
+    <script >
+        function myFunction1(){
+            let r=confirm("ต้องการจะลบจริงหรือไม่");
+            return r;
+        }
+    </script>
 </head>
 <?php
     if(isset($_SESSION['id'])){
@@ -46,16 +52,25 @@
         <table class="table table-striped">
             <ul>
                 <?php 
-                    $i=1; 
-                    while($i<=10){
-                        echo "<tr><td> <a href='post.php?id=$i' style='text-decoration:none'>กระทู้ที่$i</a></td>";
-                        if($_SESSION['role']=='a'){
-                            echo "<td> <a href=delete.php?id=$i class='btn btn-danger btn-sm'><i class='bi bi-trash3'></i></a> </td>";
+
+                    $conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                    $sql="SELECT c.name,p.title,p.post_date,u.name,p.id FROM post p,category c,user u where p.cat_id=c.id AND p.user_id=u.id ORDER BY p.post_date DESC";
+                    $data=$conn->query($sql);
+                   
+                    if($data !== false){
+                        while($i=$data->fetch()){
+                            echo "<tr><td>".$i['0']."";
+                            echo " <a href='post.php?id=".$i['1']."'";
+                            echo "style='text-decoration:none'>".$i['1']."'</a>";
+                            echo "<BR>".$i['3']."  ".$i['2']."</td>";
+                            
+                            if($_SESSION['role']=='a'){
+                                echo "<td><a href=delete.php?id=".$i['4']." class='btn btn-danger btn-sm' onclick='return myFunction1();'><i class='bi bi-trash3'></i></a> </td>";
+                            }                      
+                            echo"</tr>";
+                            
                         }
-                        
-                        echo"</tr>";
-                        $i++;
-                    }
+                    } 
                 ?>
             </ul>
         </table>
@@ -91,13 +106,21 @@
         <br>
         <table class="table table-striped">
             <ul>
-                <?php 
-                    $i=1; 
-                    while($i<=10){
-                        echo "<tr><td> <a href='post.php?id=$i' style='text-decoration:none'>กระทู้ที่$i</a></td></tr>";
-                        $i++;
-                    }
-                ?>
+            <?php 
+
+$conn=new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+$sql="SELECT c.name,p.title,p.post_date,u.name,p.id FROM post p,category c,user u where p.cat_id=c.id AND p.user_id=u.id ORDER BY p.post_date DESC";
+$data=$conn->query($sql);
+
+if($data !== false){
+    while($i=$data->fetch()){
+        echo "<tr><td>".$i['0']."";
+        echo " <a href='post.php?id=".$i['1']."'";
+        echo "style='text-decoration:none'>".$i['1']."'</a>";
+        echo "<BR>".$i['3']." - ".$i['2']."</td>";
+    }
+} 
+?>
             </ul>
         </table>
         
