@@ -60,7 +60,7 @@
                     if($data !== false){
                         while($i=$data->fetch()){
                             echo "<tr><td>".$i['0']."";
-                            echo " <a href='post.php?id=".$i['1']."'";
+                            echo " <a href='post.php?id=".$i['4']."'";
                             echo "style='text-decoration:none'>".$i['1']."'</a>";
                             echo "<BR>".$i['3']."  ".$i['2']."</td>";
                             
